@@ -1,0 +1,83 @@
+{
+  "metadata": {
+    "source": "Receita Federal do Brasil / INSS",
+    "currency": "BRL",
+    "updated_at": "2025-11-26",
+    "legal_basis": [
+      "Lei nº 15.270/2025",
+      "Legislação IRPF vigente",
+      "Regra INSS Contribuinte Individual"
+    ]
+  },
+
+  "dependents": {
+    "monthly_deduction_value": 189.59
+  },
+
+  "inss": {
+    "calculation_type": "contribuinte_individual",
+    "rule": "11% sobre o pró-labore limitado ao teto",
+    "years": {
+      "2025": {
+        "status": "official",
+        "minimum_wage": 1518.00,
+        "rate": 0.11,
+        "ceiling": 7786.02
+      },
+      "2026": {
+        "status": "simulated",
+        "minimum_wage": 1621.00,
+        "rate": 0.11,
+        "ceiling": 8420.00,
+        "legal_notice": "Valores estimados para planejamento. Sujeitos a publicação oficial."
+      }
+    }
+  },
+
+  "ir": {
+    "taxable_base_definition": "Base após INSS, dependentes, pensão judicial e PGBL (limitado a 12%)",
+
+    "years": {
+      "2025": {
+        "calculation_strategy": "traditional",
+        "application_order": [
+          "calculate_progressive_tax"
+        ],
+        "progressive_table_monthly": [
+          { "range_start": 0.00, "range_end": 2259.20, "rate": 0.0, "deduction": 0.0 },
+          { "range_start": 2259.21, "range_end": 2826.65, "rate": 0.075, "deduction": 169.44 },
+          { "range_start": 2826.66, "range_end": 3751.05, "rate": 0.15, "deduction": 381.44 },
+          { "range_start": 3751.06, "range_end": 4664.68, "rate": 0.225, "deduction": 662.77 },
+          { "range_start": 4664.69, "range_end": null, "rate": 0.275, "deduction": 896.00 }
+        ]
+      },
+
+      "2026": {
+        "calculation_strategy": "hybrid",
+        "application_order": [
+          "calculate_progressive_tax",
+          "apply_exemption",
+          "apply_reduction"
+        ],
+
+        "exemption_limit_monthly": 5000.00,
+        "reduction_limit_monthly": 7350.00,
+
+        "monthly_reduction_rule": {
+          "type": "linear_formula",
+          "formula": "978.62 - (0.133145 * taxable_income)",
+          "minimum": 0.0,
+          "maximum": 978.62
+        },
+
+        "progressive_table_monthly": [
+          { "range_start": 0.00, "range_end": 2428.80, "rate": 0.0, "deduction": 0.0 },
+          { "range_start": 2428.81, "range_end": 2826.65, "rate": 0.075, "deduction": 182.16 },
+          { "range_start": 2826.66, "range_end": 3751.05, "rate": 0.15, "deduction": 394.16 },
+          { "range_start": 3751.06, "range_end": 4664.68, "rate": 0.225, "deduction": 675.49 },
+          { "range_start": 4664.69, "range_end": null, "rate": 0.275, "deduction": 908.73 }
+        ]
+      }
+    }
+  }
+}
